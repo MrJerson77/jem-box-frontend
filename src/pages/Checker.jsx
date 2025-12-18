@@ -230,9 +230,6 @@ export default function Checker() {
 
         {/* Advertencia */}
         <div className="bg-yellow-900/30 border border-yellow-700 rounded-2xl p-6 mb-8">
-          <p className="text-yellow-200 text-center leading-relaxed">
-            🏢 <strong>Amazon Business:</strong> Requiere dirección registrada en New York en tu cuenta Amazon.
-          </p>
           <p className="text-yellow-200 text-center mt-3 leading-relaxed">
             😴 ¿Cansado de sacar cookies? Compra Cookies USA y Business con: <a href="https://t.me/soyjemoox" target="_blank" rel="noopener" className="text-yellow-100 underline">@soyjemoox</a>
           </p>
@@ -425,3 +422,4 @@ export default function Checker() {
     </div>
   );
 }
+
