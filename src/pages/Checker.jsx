@@ -140,10 +140,10 @@ export default function Checker() {
     }
 
     // Procesar BINs
-    const binList = bins.split(';').map(b => b.trim()).filter(b => b.length >= 6);
+    const binList = bins.split(';').map(b => b.trim()).filter(b => b.length >= 6 && b.length <= 16);
 
     if (binList.length === 0) {
-      setMessage({ text: '❌ Debes ingresar BINs válidos (mínimo 6 dígitos)', type: 'error' });
+      setMessage({ text: '❌ Debes ingresar BINs válidos (6-16 dígitos)', type: 'error' });
       return;
     }
 
@@ -230,6 +230,9 @@ export default function Checker() {
 
         {/* Advertencia */}
         <div className="bg-yellow-900/30 border border-yellow-700 rounded-2xl p-6 mb-8">
+          <p className="text-yellow-200 text-center leading-relaxed">
+            🏢 <strong>Amazon Business:</strong> Requiere dirección registrada en New York en tu cuenta Amazon.
+          </p>
           <p className="text-yellow-200 text-center mt-3 leading-relaxed">
             😴 ¿Cansado de sacar cookies? Compra Cookies USA y Business con: <a href="https://t.me/soyjemoox" target="_blank" rel="noopener" className="text-yellow-100 underline">@soyjemoox</a>
           </p>
@@ -259,12 +262,21 @@ export default function Checker() {
               <label className="block text-sm font-medium mb-2 text-gray-300">BINs</label>
               <input
                 type="text"
-                placeholder="Separa BINs con ; (ej: 424242;555555;401288)"
+                placeholder="401288"
                 value={bins}
-                onChange={(e) => setBins(e.target.value)}
+                onChange={(e) => {
+                  // Solo permitir números, punto y coma, y espacios
+                  const value = e.target.value.replace(/[^0-9;]/g, '');
+                  // Validar cada BIN individualmente
+                  const binList = value.split(';');
+                  const validBins = binList.map(bin => {
+                    // Máximo 16 dígitos por BIN
+                    return bin.slice(0, 16);
+                  }).join(';');
+                  setBins(validBins);
+                }}
                 className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl focus:outline-none focus:border-purple-500 text-gray-100"
               />
-              <p className="text-xs text-gray-500 mt-1">Ejemplo: 424242;555555;401288</p>
             </div>
 
             {/* Mes */}
@@ -313,10 +325,10 @@ export default function Checker() {
 
             {/* CVV */}
             <div className="mb-6">
-              <label className="block text-sm font-medium mb-2 text-gray-300">CVV (Opcional)</label>
+              <label className="block text-sm font-medium mb-2 text-gray-300">CVV</label>
               <input
                 type="text"
-                placeholder="3 o 4 dígitos (vacío = automático según tipo)"
+                placeholder="123"
                 value={cvv}
                 onChange={(e) => {
                   const value = e.target.value.replace(/\D/g, '');
@@ -325,7 +337,6 @@ export default function Checker() {
                 maxLength={4}
                 className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl focus:outline-none focus:border-purple-500 text-gray-100"
               />
-              <p className="text-xs text-gray-500 mt-1">Amex: 4 dígitos | Visa/Mastercard: 3 dígitos</p>
             </div>
 
             {/* Cantidad */}
