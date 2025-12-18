@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Admin from './pages/Admin';
 import Purchases from './pages/Purchases';
+import Checker from './pages/Checker';
 
 // Función para leer cookies
 const getCookie = (name) => {
@@ -42,7 +43,14 @@ function App() {
               <Home />
             </ProtectedRoute>
           } 
-        />
+        /><Route 
+        path="/checker" 
+        element={
+          <ProtectedRoute>
+            <Checker />
+          </ProtectedRoute>
+        } 
+      />
         <Route 
           path="/admin" 
           element={
