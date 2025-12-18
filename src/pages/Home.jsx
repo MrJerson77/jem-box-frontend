@@ -1,4 +1,4 @@
-import { ChevronRight, AlertTriangle, LogOut, X, Bot, ShoppingCart } from 'lucide-react';
+import { ChevronRight, AlertTriangle, LogOut, X, Bot, ShoppingCart, CreditCard } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PurchaseModal from '../components/PurchaseModal';
@@ -195,6 +195,13 @@ export default function Home() {
           </p>
 
           <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate('/checker')}
+              className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-3 rounded-xl transition shadow-lg"
+            >
+              <CreditCard size={20} />
+              Checker
+            </button>
             <button
               onClick={() => navigate('/compras')}
               className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white font-medium px-6 py-3 rounded-xl transition shadow-lg"
