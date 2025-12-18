@@ -36,6 +36,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        
+        {/* Cambiar /index a /home */}
         <Route 
           path="/index" 
           element={
@@ -43,14 +45,17 @@ function App() {
               <Home />
             </ProtectedRoute>
           } 
-        /><Route 
-        path="/checker" 
-        element={
-          <ProtectedRoute>
-            <Checker />
-          </ProtectedRoute>
-        } 
-      />
+        />
+        
+        <Route 
+          path="/checker" 
+          element={
+            <ProtectedRoute>
+              <Checker />
+            </ProtectedRoute>
+          } 
+        />
+        
         <Route 
           path="/admin" 
           element={
@@ -59,6 +64,7 @@ function App() {
             </ProtectedRoute>
           } 
         />
+        
         <Route 
           path="/compras" 
           element={
@@ -67,6 +73,7 @@ function App() {
             </ProtectedRoute>
           } 
         />
+        
         {/* Redirección por defecto */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
